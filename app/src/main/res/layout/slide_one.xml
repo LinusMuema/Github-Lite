@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/primary_dark"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/accent"
+        android:id="@+id/tops"
+        android:fontFamily="@font/nunito"
+        android:layout_marginTop="100dp"
+        android:textSize="25dp"
+        android:text="Welcome to Github Lite"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_below="@+id/tops"
+        android:layout_margin="50dp"
+        android:src="@drawable/octocat"/>
+</RelativeLayout>
