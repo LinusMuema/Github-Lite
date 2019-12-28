@@ -7,14 +7,17 @@ import android.view.View
 import com.github.paolorotolo.appintro.AppIntro2
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.OAuthProvider
 import kotlinx.android.synthetic.main.slide_five.*
+import org.jetbrains.anko.design.snackbar
 
 
 class AppIntro : AppIntro2(){
 
     var provider = OAuthProvider.newBuilder("github.com")
     var firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    var firebaseuser: FirebaseUser? = firebaseAuth.currentUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,18 +30,20 @@ class AppIntro : AppIntro2(){
         showSkipButton(false)
         setProgressButtonEnabled(false)
 
+        Log.d("User", firebaseuser.toString())
+        if (firebaseuser!= null)
+            updateUI()
+
     }
 
     fun btnClick(view: View) {
         spinner.visibility = View.VISIBLE
         firebaseAuth.startActivityForSignInWithProvider(this, provider.build())
             .addOnSuccessListener{ result: AuthResult ->
-               Log.d("success", result.credential.toString())
                 updateUI()
             }
-            .addOnFailureListener {
-                    exception ->
-                Log.d("failure",exception.toString())
+            .addOnFailureListener { exception ->
+                snackbar(relative, "Ooops! Something went wrong. Try again later")
             }
     }
 

@@ -44,6 +44,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:17.2.0'
     implementation 'com.google.firebase:firebase-auth:19.2.0'
 
+    //Anko snackbar
+    implementation "org.jetbrains.anko:anko-design:0.10.8"
 }
 
 apply plugin: 'com.google.gms.google-services'
