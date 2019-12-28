@@ -1,8 +1,8 @@
 package com.moose.githublite
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.github.paolorotolo.appintro.AppIntro2
 import com.google.firebase.auth.AuthResult
@@ -28,9 +28,8 @@ class AppIntro : AppIntro2(){
         addSlide(SampleSlide.newInstance(R.layout.slide_four))
         addSlide(SampleSlide.newInstance(R.layout.slide_five))
         showSkipButton(false)
-        setProgressButtonEnabled(false)
+        isProgressButtonEnabled = false
 
-        Log.d("User", firebaseuser.toString())
         if (firebaseuser!= null)
             updateUI()
 
@@ -39,12 +38,21 @@ class AppIntro : AppIntro2(){
     fun btnClick(view: View) {
         spinner.visibility = View.VISIBLE
         firebaseAuth.startActivityForSignInWithProvider(this, provider.build())
-            .addOnSuccessListener{ result: AuthResult ->
+            .addOnSuccessListener{ authResult: AuthResult ->
+                var mail = firebaseuser?.email
+                addToShared(mail)
                 updateUI()
             }
             .addOnFailureListener { exception ->
-                snackbar(relative, "Ooops! Something went wrong. Try again later")
+                snackbar(relative, "Something went wrong! Try again later")
             }
+    }
+
+    private fun addToShared(mail: String?) {
+        val sharedPreference =  getSharedPreferences("GITHUB", Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        editor.putString("user_mail",mail)
+        editor.apply()
     }
 
     private fun updateUI() {
