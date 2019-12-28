@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Github Lite</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="slide_two">You will be able to check your github activity through your phone from anywhere.  Your pocket size github tool.</string>
-    <string name="slide_three">You will receive notifications when your friends make any moves in github and if any pull requests are made. It will keep you up to date.</string>
+    <string name="slide_two">Get all your Github info on your mobile phone any time and place.</string>
+    <string name="slide_three">All the news and pull requests are provided to you. See whatever your fellow developers are up to.</string>
 </resources>

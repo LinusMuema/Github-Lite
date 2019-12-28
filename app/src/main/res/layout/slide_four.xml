@@ -34,10 +34,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:text="Sign In"
-        android:id="@+id/btn_sign"
+        android:id="@+id/btn"
         android:textAllCaps="false"
         android:layout_width="150dp"
         android:layout_height="60dp"
+        android:onClick="btnClick"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/name_layout"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
