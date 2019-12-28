@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Github Lite</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="slide_two">Get all your Github info on your mobile phone any time and place.</string>
+    <string name="slide_two">Get all your Github information on your mobile phone at any time and place.</string>
     <string name="slide_three">All the news and pull requests are provided to you. See whatever your fellow developers are up to.</string>
-    <string name="instructions">Click the button below to sign in to Github and authorize \'Github Lite\'</string>
+    <string name="instructions">Click the button below to sign in to Github.</string>
+    <string name="slide_four">Chat with your fellow developers and discuss all the code related issues.</string>
 </resources>

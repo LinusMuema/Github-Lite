@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/tools"
+    android:background="@color/accent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/tops"
+        android:padding="20dp"
+        android:text="Get Started"
+        android:textSize="30dp"/>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tops"
+        android:fontFamily="@font/nunito"
+        android:layout_centerHorizontal="true"
+        android:text="@string/instructions"
+        android:layout_margin="20dp"
+        android:textSize="15dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:text="Sign In"
+        android:id="@+id/btn"
+        android:textAllCaps="false"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:onClick="btnClick"
+        android:layout_margin="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/instructions"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+    <ProgressBar
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btn"
+        android:visibility="invisible"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/primary"
+        android:layout_gravity="center" />
+
+</RelativeLayout>

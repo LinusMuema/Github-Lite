@@ -2,7 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/primary"
+    android:background="@color/primary_intermediate"
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -18,8 +18,10 @@
         android:layout_below="@+id/img"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:gravity="center"
         android:textColor="@color/accent"
         android:padding="20dp"
+        android:textSize="16dp"
         android:fontFamily="@font/nunito"
         android:text="@string/slide_two"/>
 
