@@ -30,8 +30,8 @@ class AppIntro : AppIntro2(){
         showSkipButton(false)
         isProgressButtonEnabled = false
 
-        if (firebaseuser!= null)
-            updateUI()
+//        if (firebaseuser!= null)
+//            updateUI()
 
     }
 
