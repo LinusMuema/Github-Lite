@@ -32,29 +32,20 @@ class AppIntro : AppIntro2(){
         showSkipButton(false)
         isProgressButtonEnabled = false
 
-//        if (firebaseuser!= null)
-//            updateUI()
+        if (firebaseuser!= null)
+            updateUI()
 
     }
-    
+
     fun btnClick(view: View) {
         spinner.visibility = View.VISIBLE
         firebaseAuth.startActivityForSignInWithProvider(this, provider.build())
             .addOnSuccessListener{ authResult: AuthResult ->
-                var mail = firebaseuser?.email
-                addToShared(mail)
                 updateUI()
             }
             .addOnFailureListener { exception ->
                 snackbar(relative, "Something went wrong! Try again later")
             }
-    }
-
-    private fun addToShared(mail: String?) {
-        val sharedPreference =  getSharedPreferences("GITHUB", Context.MODE_PRIVATE)
-        val editor = sharedPreference.edit()
-        editor.putString("user_mail",mail)
-        editor.apply()
     }
 
     private fun updateUI() {
