@@ -6,11 +6,12 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
         android:id="@+id/img"
         android:layout_margin="50dp"
-        android:src="@drawable/octocat"/>
+        android:src="@drawable/notification"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
@@ -24,4 +25,5 @@
         android:textSize="16dp"
         android:fontFamily="@font/nunito"
         android:text="@string/slide_three"/>
+
 </RelativeLayout>

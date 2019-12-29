@@ -4,12 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.bumptech.glide.Glide
 import com.github.paolorotolo.appintro.AppIntro2
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.OAuthProvider
 import kotlinx.android.synthetic.main.slide_five.*
+import kotlinx.android.synthetic.main.slide_four.*
 import org.jetbrains.anko.design.snackbar
 
 
@@ -34,7 +36,7 @@ class AppIntro : AppIntro2(){
 //            updateUI()
 
     }
-
+    
     fun btnClick(view: View) {
         spinner.visibility = View.VISIBLE
         firebaseAuth.startActivityForSignInWithProvider(this, provider.build())
