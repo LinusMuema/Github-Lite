@@ -11,7 +11,7 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/img"
         android:layout_margin="50dp"
-        android:src="@drawable/notification"/>
+        android:src="@drawable/notifications"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
