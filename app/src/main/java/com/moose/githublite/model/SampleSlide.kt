@@ -1,4 +1,4 @@
-package com.moose.githublite
+package com.moose.githublite.model
 
 import android.os.Bundle
 import android.view.LayoutInflater
