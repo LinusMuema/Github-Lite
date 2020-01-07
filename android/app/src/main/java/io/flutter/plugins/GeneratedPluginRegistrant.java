@@ -1,7 +1,6 @@
 package io.flutter.plugins;
 
 import io.flutter.plugin.common.PluginRegistry;
-import com.sahdeepsingh.liquid_swipe.LiquidSwipePlugin;
 
 /**
  * Generated file. Do not edit.
@@ -11,7 +10,6 @@ public final class GeneratedPluginRegistrant {
     if (alreadyRegisteredWith(registry)) {
       return;
     }
-    LiquidSwipePlugin.registerWith(registry.registrarFor("com.sahdeepsingh.liquid_swipe.LiquidSwipePlugin"));
   }
 
   private static boolean alreadyRegisteredWith(PluginRegistry registry) {

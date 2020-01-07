@@ -1,7 +1,7 @@
 import 'package:fancy_on_boarding/fancy_on_boarding.dart';
 import 'package:flutter/material.dart';
 
-class OnboadingPage extends StatelessWidget {
+class OnboardingPage extends StatelessWidget {
 
   final pageList = [
     PageModel(
@@ -17,7 +17,6 @@ class OnboadingPage extends StatelessWidget {
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.white,
-          D:\PROJECTS\Android PROJECTS\github_lite\lib\screens\onboarding.dart
           fontSize: 18.0
         ),
       

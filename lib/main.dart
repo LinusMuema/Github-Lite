@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:github_lite/screens/login_page.dart';
+import 'package:github_lite/screens/onboarding.dart';
 
 
 
@@ -10,9 +12,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'GitHub Lite',
+      debugShowCheckedModeBanner: false,
        routes: {
     
-    '/': (context) => OnboadingPage(),
+    '/': (context) => OnboardingPage(),
     // When navigating to the "/second" route, build the SecondScreen widget.
     '/loginPage': (context) => LoginPage(),
   },
