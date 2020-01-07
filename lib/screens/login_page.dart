@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: 
                     
                     //Provider.of<UserProvider>(context).isLoading() ? 
-                    CircularProgressIndicator(backgroundColor: Colors.white, strokeWidth: 2,) :
+                   
                     Text(
                       'Get started on Gitlite',
                       style: TextStyle(color: Colors.white),
