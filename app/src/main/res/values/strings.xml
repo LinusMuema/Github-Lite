@@ -5,4 +5,10 @@
     <string name="slide_three">All the news and pull requests are provided to you. See whatever your fellow developers are up to.</string>
     <string name="instructions">Click the button below to sign in to Github.</string>
     <string name="slide_four">Chat with your fellow developers and discuss all the code related issues.</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_repos">Repos</string>
+    <string name="my_repos">My Repos</string>
 </resources>
