@@ -3,19 +3,25 @@ package com.moose.githublite.fragments.repos
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.moose.githublite.R
+import com.moose.githublite.adapters.RepoListAdapter
 import com.moose.githublite.model.GithubRepos
+import kotlinx.android.synthetic.main.fragment_repos.*
 
 class ReposFragment : Fragment() {
 
     private lateinit var reposViewModel: ReposViewModel
+    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var shared:SharedPreferences
     private lateinit var repos:List<GithubRepos>
     private var token:String = ""
@@ -31,14 +37,21 @@ class ReposFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_repos, container, false)
         val reposObserver = Observer<List<GithubRepos>>{
             repos = it
-            setRecyclerView()
+            setRecyclerView(view)
         }
         reposViewModel.repos.observe(this, reposObserver)
         reposViewModel.getRepos(token)
         return view
     }
 
-    private fun setRecyclerView() {
-
+    private fun setRecyclerView(view: View) {
+        view.findViewById<ProgressBar>(R.id.progress_bar).visibility = View.INVISIBLE
+        viewManager = LinearLayoutManager(this.requireContext())
+        viewAdapter = RepoListAdapter(repos)
+        recycler.apply {
+            setHasFixedSize(true)
+            layoutManager = viewManager
+            adapter = viewAdapter
+        }
     }
 }

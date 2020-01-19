@@ -13,7 +13,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.MainActivity"
-            android:label="@string/title_activity_main"></activity>
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme"></activity>
         <activity
             android:name=".ui.Splash"
             android:theme="@style/NoActionBar">

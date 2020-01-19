@@ -20,7 +20,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tops"
         android:layout_margin="10dp"
-        android:id="@+id/recycler"
-        android:padding="10dp"/>
+        android:id="@+id/recycler"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:scaleY="4"
+        android:indeterminateTint="@color/primary_dark"
+        android:indeterminateBehavior="repeat"
+        android:indeterminate="true" />
 
 </RelativeLayout>
