@@ -32,6 +32,14 @@ class AppIntro : AppIntro2(){
         showSkipButton(false)
         isProgressButtonEnabled = false
 
+        val scopes: ArrayList<String?> = object : ArrayList<String?>() {
+            init {
+                add("user")
+                add("public_repo")
+            }
+        }
+        provider.setScopes(scopes)
+
     }
 
     fun btnClick(view: View) {

@@ -12,4 +12,7 @@
     <string name="title_repos">Repos</string>
     <string name="my_repos">My Repos</string>
     <string name="title_profile">Profile</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="activity">Activity</string>
 </resources>
