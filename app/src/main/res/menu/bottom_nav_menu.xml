@@ -7,9 +7,9 @@
         android:title="@string/title_repos" />
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:id="@+id/navigation_add"
+        android:icon="@drawable/ic_add_black_24dp"
+        android:title="@string/title_add_repo" />
 
     <item
         android:id="@+id/navigation_profile"

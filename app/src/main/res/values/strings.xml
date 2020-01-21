@@ -15,4 +15,19 @@
     <string name="followers">Followers</string>
     <string name="following">Following</string>
     <string name="activity">Activity</string>
+    <string name="title_add_repo">Add Repo</string>
+    <string name="add_repo">Fill in the following details to create a new Repo in your Github account.</string>
+    <string name="name">Name of the Repo *</string>
+    <string name="repo_description">The repository description</string>
+    <string name="auto_init">Create an initial commit with empty README.</string>
+    <string name="create">Create</string>
+    <string name="repo_homepage">The homepage URL</string>
+    <string name="repo_license">5. Enter the License (eg. mit)</string>
+    <string name="name_instructions">1. Enter the name of the repo</string>
+    <string name="submit">add</string>
+    <string name="description_instructions">2. Enter the description of the repo</string>
+    <string name="home_instructions">3. Enter the URL to the repo\'s homepage.</string>
+    <string name="private_instructions">4. Is the repo private ?</string>
+    <string name="license">The repo license</string>
+    <string name="next">Next</string>
 </resources>

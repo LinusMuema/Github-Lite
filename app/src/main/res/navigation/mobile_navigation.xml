@@ -12,14 +12,15 @@
         tools:layout="@layout/fragment_repos" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.moose.githublite.fragments.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_add"
+        android:name="com.moose.githublite.fragments.addRepo.AddRepoFragment"
+        android:label="@string/title_add_repo"
+        tools:layout="@layout/fragment_add_repo" />
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.moose.githublite.fragments.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+
 </navigation>
