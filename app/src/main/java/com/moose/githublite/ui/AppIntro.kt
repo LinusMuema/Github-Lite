@@ -35,7 +35,7 @@ class AppIntro : AppIntro2(){
         val scopes: ArrayList<String?> = object : ArrayList<String?>() {
             init {
                 add("user")
-                add("public_repo")
+                add("repo")
             }
         }
         provider.setScopes(scopes)

@@ -3,10 +3,10 @@ package com.moose.githublite.retrofit
 import com.moose.githublite.model.GithubEvents
 import com.moose.githublite.model.GithubRepos
 import com.moose.githublite.model.GithubUser
+import okhttp3.RequestBody
+import org.json.JSONObject
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Url
+import retrofit2.http.*
 
 interface GithubEndpoints {
     @GET("user/repos")
@@ -17,4 +17,7 @@ interface GithubEndpoints {
 
     @GET
     fun getEvents(@Url url:String): Call<List<GithubEvents>>
+
+    @POST("user/repos")
+    fun creatRepo(@Header("Authorization") token: String, @Body repo:RequestBody) : Call<GithubRepos>
 }

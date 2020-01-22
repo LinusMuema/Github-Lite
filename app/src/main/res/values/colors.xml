@@ -4,5 +4,6 @@
   <color name="primary_light">#2E86C1</color>
   <color name="primary_intermediate">#21618C</color>
   <color name="primary_dark">#1B4F72</color>
+  <color name="success">#28B463 </color>
   <color name="accent">#ffffff</color>
 </resources>

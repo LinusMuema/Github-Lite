@@ -24,7 +24,7 @@ class ReposFragment : Fragment() {
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var shared:SharedPreferences
-    private lateinit var repos:List<GithubRepos>
+    private var repos = ArrayList<GithubRepos>()
     private var token:String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,12 @@ class ReposFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_repos, container, false)
         val reposObserver = Observer<List<GithubRepos>>{
-            repos = it
+            for (item in it){
+                if (!item.fork){
+                    repos.add(item)
+                    Log.d("item_", repos.toString())
+                }
+            }
             setRecyclerView(view)
         }
         reposViewModel.repos.observe(this, reposObserver)
@@ -50,6 +55,7 @@ class ReposFragment : Fragment() {
         view.findViewById<ProgressBar>(R.id.progress_bar).visibility = View.INVISIBLE
         viewManager = LinearLayoutManager(this.requireContext())
         viewAdapter = RepoListAdapter(repos)
+        Log.d("repos_", repos.toString())
         recycler.apply {
             setHasFixedSize(true)
             layoutManager = viewManager

@@ -7,7 +7,8 @@ data class GithubRepos(
     val name: String,
     val `private`: Boolean,
     val created_at:String,
-    val stargazers_count:Int
+    val stargazers_count:Int,
+    val fork:Boolean
 )
 
 data class License(

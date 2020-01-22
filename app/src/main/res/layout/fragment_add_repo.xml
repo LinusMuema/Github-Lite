@@ -7,360 +7,272 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/tops"
-            android:fontFamily="@font/nunito"
-            android:textSize="15sp"
-            android:gravity="center"
-            android:layout_margin="10dp"
-            android:text="@string/add_repo"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/relative_repos">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:id="@+id/step_one"
-            android:layout_below="@+id/tops">
+            android:id="@+id/forms">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tops"
+                android:fontFamily="@font/nunito"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:text="@string/add_repo"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/name_instruction"
-                android:background="@color/primary_dark">
-
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="10dp"
-                    android:textColor="@color/accent"
-                    android:text="@string/name_instructions"/>
-
-            </RelativeLayout>
-
-            <net.cachapa.expandablelayout.ExpandableLayout
-                android:id="@+id/expandable_name"
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/name_instruction"
-                app:el_duration="500"
-                app:el_expanded="true"
-                app:el_parallax="0.5">
+                android:layout_margin="20dp"
+                android:id="@+id/step_one"
+                android:layout_below="@+id/tops">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="40dp"
+                    android:id="@+id/name_instruction"
+                    android:background="@color/primary_dark">
 
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/name_layout"
-                        android:layout_margin="10dp"
-                        android:hint="@string/name">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/accent"
-                            android:id="@+id/repo_name"/>
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.button.MaterialButton
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:id="@+id/name_btn"
-                        android:layout_below="@+id/name_layout"
-                        android:text="@string/next"/>
+                        android:layout_centerVertical="true"
+                        android:layout_margin="10dp"
+                        android:textColor="@color/accent"
+                        android:text="@string/name_instructions"/>
+
                 </RelativeLayout>
 
-            </net.cachapa.expandablelayout.ExpandableLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:id="@+id/step_two"
-            android:layout_below="@+id/step_one">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/description_instruction"
-                android:background="@color/primary_dark">
-
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="10dp"
-                    android:textColor="@color/accent"
-                    android:text="@string/description_instructions"/>
-
-            </RelativeLayout>
-
-            <net.cachapa.expandablelayout.ExpandableLayout
-                android:id="@+id/expandable_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/description_instruction"
-                app:el_duration="500"
-                app:el_expanded="false"
-                app:el_parallax="0.5">
-
-                <RelativeLayout
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/expandable_name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/name_instruction"
+                    app:el_duration="500"
+                    app:el_expanded="true"
+                    app:el_parallax="0.5">
 
-
-                    <com.google.android.material.textfield.TextInputLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/description_layout"
-                        android:layout_margin="10dp"
-                        android:hint="@string/repo_description">
+                        android:layout_height="wrap_content">
 
-                        <com.google.android.material.textfield.TextInputEditText
+
+                        <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/accent"
-                            android:id="@+id/repo_description"/>
+                            android:id="@+id/name_layout"
+                            android:layout_margin="10dp"
+                            android:hint="@string/name">
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/accent"
+                                android:id="@+id/repo_name"/>
 
-                    <com.google.android.material.button.MaterialButton
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:id="@+id/description_btn"
-                        android:layout_below="@+id/description_layout"
-                        android:text="@string/next"/>
-                </RelativeLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
-            </net.cachapa.expandablelayout.ExpandableLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:id="@+id/step_three"
-            android:layout_below="@+id/step_two">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/homepage_instruction"
-                android:background="@color/primary_dark">
-
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="10dp"
-                    android:textColor="@color/accent"
-                    android:text="@string/home_instructions"/>
-
-            </RelativeLayout>
-
-            <net.cachapa.expandablelayout.ExpandableLayout
-                android:id="@+id/expandable_homepage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/homepage_instruction"
-                app:el_duration="500"
-                app:el_expanded="false"
-                app:el_parallax="0.5">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/homepage_layout"
-                        android:layout_margin="10dp"
-                        android:hint="@string/repo_homepage">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/accent"
-                            android:id="@+id/repo_homepage"/>
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.button.MaterialButton
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:id="@+id/homepage_btn"
-                        android:layout_below="@+id/homepage_layout"
-                        android:text="@string/next"/>
-                </RelativeLayout>
-
-            </net.cachapa.expandablelayout.ExpandableLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:id="@+id/step_four"
-            android:layout_below="@+id/step_three">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/private_instruction"
-                android:background="@color/primary_dark">
-
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="10dp"
-                    android:textColor="@color/accent"
-                    android:text="@string/private_instructions"/>
-
-            </RelativeLayout>
-
-            <net.cachapa.expandablelayout.ExpandableLayout
-                android:id="@+id/expandable_private"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/private_instruction"
-                app:el_duration="500"
-                app:el_expanded="false"
-                app:el_parallax="0.5">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.jaredrummler.materialspinner.MaterialSpinner
-                        android:padding="20dp"
-                        android:id="@+id/spinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                    <com.google.android.material.button.MaterialButton
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:id="@+id/private_btn"
-                        android:layout_below="@+id/spinner"
-                        android:text="@string/next"/>
-                </RelativeLayout>
-
-            </net.cachapa.expandablelayout.ExpandableLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:layout_marginBottom="100dp"
-            android:id="@+id/step_five"
-            android:layout_below="@+id/step_four">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/license_instruction"
-                android:background="@color/primary_dark">
-
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="10dp"
-                    android:textColor="@color/accent"
-                    android:text="@string/repo_license"/>
-
-            </RelativeLayout>
-
-            <net.cachapa.expandablelayout.ExpandableLayout
-                android:id="@+id/expandable_license"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/license_instruction"
-                app:el_duration="500"
-                app:el_expanded="false"
-                app:el_parallax="0.5">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/license_layout"
-                        android:layout_margin="10dp"
-                        android:hint="@string/license">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@color/accent"
-                            android:id="@+id/repo_license"/>
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/license_layout"
-                        android:id="@+id/linear">
-
-                        <CheckBox
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:buttonTint="@color/primary_dark"/>
+                            android:layout_alignParentEnd="true"
+                            android:id="@+id/name_btn"
+                            android:layout_below="@+id/name_layout"
+                            android:text="@string/next"/>
+                    </RelativeLayout>
 
-                        <com.google.android.material.textview.MaterialTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/auto_init"/>
+                </net.cachapa.expandablelayout.ExpandableLayout>
 
-                    </LinearLayout>
-                    <com.google.android.material.button.MaterialButton
-                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:id="@+id/step_two"
+                android:layout_below="@+id/step_one">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/description_instruction"
+                    android:background="@color/primary_dark">
+
+
+                    <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:id="@+id/license_btn"
-                        android:layout_below="@+id/linear"
-                        android:text="@string/submit"/>
+                        android:layout_centerVertical="true"
+                        android:layout_margin="10dp"
+                        android:textColor="@color/accent"
+                        android:text="@string/description_instructions"/>
+
                 </RelativeLayout>
 
-            </net.cachapa.expandablelayout.ExpandableLayout>
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/expandable_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/description_instruction"
+                    app:el_duration="500"
+                    app:el_expanded="false"
+                    app:el_parallax="0.5">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/description_layout"
+                            android:layout_margin="10dp"
+                            android:hint="@string/repo_description">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/accent"
+                                android:id="@+id/repo_description"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:id="@+id/description_btn"
+                            android:layout_below="@+id/description_layout"
+                            android:text="@string/next"/>
+                    </RelativeLayout>
+
+                </net.cachapa.expandablelayout.ExpandableLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:id="@+id/step_three"
+                android:layout_below="@+id/step_two">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:id="@+id/private_instruction"
+                    android:background="@color/primary_dark">
+
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="10dp"
+                        android:textColor="@color/accent"
+                        android:text="@string/private_instructions"/>
+
+                </RelativeLayout>
+
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:id="@+id/expandable_private"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/private_instruction"
+                    app:el_duration="500"
+                    app:el_expanded="false"
+                    app:el_parallax="0.5">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.jaredrummler.materialspinner.MaterialSpinner
+                            android:padding="20dp"
+                            android:id="@+id/spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/spinner"
+                            android:id="@+id/linear">
+
+                            <CheckBox
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/checkbox"
+                                android:buttonTint="@color/primary_dark"/>
+
+                            <com.google.android.material.textview.MaterialTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/auto_init"/>
+
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:id="@+id/private_btn"
+                            android:layout_below="@+id/linear"
+                            android:text="@string/submit"/>
+                    </RelativeLayout>
+
+                </net.cachapa.expandablelayout.ExpandableLayout>
+
+            </RelativeLayout>
 
         </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:visibility="invisible"
+            android:id="@+id/repo_success">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:id="@+id/txt_success"
+                android:layout_centerHorizontal="true"
+                android:text="@string/repo_created"/>
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ok"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/txt_success"
+                android:text="@string/ok"/>
+
+        </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:scaleY="4"
+            android:visibility="invisible"
+            android:indeterminateTint="@color/primary_dark"
+            android:indeterminateBehavior="repeat"
+            android:indeterminate="true" />
 
     </RelativeLayout>
 
