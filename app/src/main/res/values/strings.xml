@@ -30,4 +30,7 @@
     <string name="next">Next</string>
     <string name="repo_created">Your repo has been successfully created. Happy Coding!</string>
     <string name="ok">Ok</string>
+    <string name="client_id">52ae3c62f79bdac0ba67</string>
+    <string name="client_secret">46ae345bb463e4e2f288c88a1dc5c4c5bbbc181e</string>
+    <string name="redirect_uri">githublite://moose.apps</string>
 </resources>
