@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.jaredrummler.materialspinner.MaterialSpinner
@@ -68,8 +69,12 @@ class AddRepoFragment : Fragment() {
 
         view.findViewById<Button>(R.id.ok).setOnClickListener {
             view.findViewById<RelativeLayout>(R.id.repo_success).visibility = View.INVISIBLE
-            activity!!.supportFragmentManager.beginTransaction()
-                .replace(this@AddRepoFragment.id, AddRepoFragment()).commit()
+            val frg: Fragment = AddRepoFragment()
+            val ft: FragmentTransaction = activity!!.supportFragmentManager.beginTransaction()
+            ft.detach(frg)
+            ft.attach(frg)
+            ft.addToBackStack(AddRepoFragment::class.java.simpleName)
+            ft.commit()
         }
 
         view.findViewById<Button>(R.id.name_btn).setOnClickListener {
