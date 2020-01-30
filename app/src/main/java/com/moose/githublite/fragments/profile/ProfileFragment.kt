@@ -8,12 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.moose.githublite.R
 import com.moose.githublite.adapters.EventListAdapter
@@ -21,12 +23,15 @@ import com.moose.githublite.model.GithubEvents
 import com.moose.githublite.model.GithubUser
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile.progress_bar
+import kotlinx.android.synthetic.main.fragment_repos.*
 
 class ProfileFragment : Fragment() {
 
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var profileViewModel: ProfileViewModel
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var shared:SharedPreferences
     private lateinit var user: GithubUser
     private lateinit var events:List<GithubEvents>
@@ -49,6 +54,7 @@ class ProfileFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        swipeRefreshLayout = view.findViewById(R.id.content)
         name = view.findViewById(R.id.name)
         mail = view.findViewById(R.id.mail)
         img = view.findViewById(R.id.img)
@@ -56,14 +62,33 @@ class ProfileFragment : Fragment() {
         followers = view.findViewById(R.id.followers)
         following = view.findViewById(R.id.following)
 
+        val connectionObserver = Observer<String> {
+            if (it == "No connection"){
+                view.findViewById<RelativeLayout>(R.id.connection_error).visibility = View.VISIBLE
+                swipeRefreshLayout.isRefreshing = false
+                progress_bar.visibility = View.GONE
+            }
+        }
+
         val userObserver =  Observer<GithubUser>{
             user = it
+            swipeRefreshLayout.isRefreshing = false
+            view.findViewById<RelativeLayout>(R.id.connection_error).visibility = View.GONE
             setUI().run { profileViewModel.getEvents(user.received_events_url) }
         }
         val eventsObserver = Observer<List<GithubEvents>> {
             events = it
             setRecycler().run { view.findViewById<ProgressBar>(R.id.progress_bar).visibility = View.INVISIBLE }
         }
+
+        swipeRefreshLayout.setOnRefreshListener {
+            profileViewModel.connection.observe(this, connectionObserver)
+            profileViewModel.events.observe(this, eventsObserver)
+            profileViewModel.user.observe(this, userObserver)
+            profileViewModel.getUser(token)
+        }
+
+        profileViewModel.connection.observe(this, connectionObserver)
         profileViewModel.events.observe(this, eventsObserver)
         profileViewModel.user.observe(this, userObserver)
         profileViewModel.getUser(token)

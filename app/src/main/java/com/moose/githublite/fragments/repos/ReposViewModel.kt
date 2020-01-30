@@ -13,11 +13,17 @@ class ReposViewModel : ViewModel() {
     val repos:MutableLiveData<List<GithubRepos>> by lazy {
         MutableLiveData<List<GithubRepos>>()
     }
+
+    val connection:MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
+    }
+
     fun getRepos(token: String) {
         val infoService =  ServiceBuilder.buildService(GithubEndpoints::class.java)
         val requestCall = infoService.getRepositories("Bearer $token")
         requestCall.enqueue(object : retrofit2.Callback<List<GithubRepos>> {
             override fun onResponse(call: Call<List<GithubRepos>>, response: Response<List<GithubRepos>>) {
+                connection.value = "Connection ok"
                 if (response.isSuccessful)
                    repos.value = response.body()
                 else
@@ -25,7 +31,8 @@ class ReposViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<List<GithubRepos>>, t: Throwable) {
-                Log.d("retrofit_", t.toString())
+                if (t.message!!.contains("Unable to resolve host"))
+                    connection.value = "No connection"
             }
         })
     }

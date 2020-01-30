@@ -53,17 +53,16 @@ class AddRepoFragment : Fragment() {
         }
         val createdObserver = Observer<String>{
             if (it.contains("Created")){
-                view.findViewById<ProgressBar>(R.id.progress_bar).visibility = View.GONE
                 relative_repos.snackbar("Repository created successfully")
                 clearForms(view)
             }
             else if(it == "It exists"){
-                view.findViewById<ProgressBar>(R.id.progress_bar).visibility = View.GONE
                 relative_repos.snackbar("Nice try! It exists.")
-                name_instruction.setBackgroundColor(resources.getColor(R.color.primary_dark))
-                description_instruction.setBackgroundColor(resources.getColor(R.color.primary_dark))
-                private_instruction.setBackgroundColor(resources.getColor(R.color.primary_dark))
-                view.findViewById<ExpandableLayout>(R.id.expandable_name).toggle()
+                clearForms(view)
+            }
+            else if (it == "No connection"){
+                relative_repos.snackbar("No internet connection detected :(")
+                clearForms(view)
             }
         }
 
@@ -108,6 +107,7 @@ class AddRepoFragment : Fragment() {
     }
 
     private fun clearForms(view: View) {
+        view.findViewById<ProgressBar>(R.id.progress_bar).visibility = View.GONE
         view.findViewById<RelativeLayout>(R.id.name_instruction).setBackgroundColor(resources.getColor(R.color.primary_dark))
         view.findViewById<RelativeLayout>(R.id.description_instruction).setBackgroundColor(resources.getColor(R.color.primary_dark))
         view.findViewById<RelativeLayout>(R.id.private_instruction).setBackgroundColor(resources.getColor(R.color.primary_dark))

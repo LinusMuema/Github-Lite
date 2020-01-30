@@ -1,35 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/content"
     android:layout_height="match_parent">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/my_repos"
-        android:fontFamily="@font/nunito"
-        android:textSize="25sp"
-        android:layout_centerHorizontal="true"
-        android:layout_margin="10dp"
-        android:id="@+id/tops"/>
-
-    <androidx.recyclerview.widget.RecyclerView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tops"
-        android:padding="10dp"
-        android:layout_marginBottom="50dp"
-        android:id="@+id/recycler"/>
+        android:layout_height="match_parent">
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:scaleY="4"
-        android:indeterminateTint="@color/primary_dark"
-        android:indeterminateBehavior="repeat"
-        android:indeterminate="true" />
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_repos"
+            android:fontFamily="@font/nunito"
+            android:textSize="25sp"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:id="@+id/tops"/>
 
-</RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tops"
+            android:padding="10dp"
+            android:layout_marginBottom="50dp"
+            android:id="@+id/recycler"/>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:scaleY="4"
+            android:indeterminateTint="@color/primary_dark"
+            android:indeterminateBehavior="repeat"
+            android:indeterminate="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/connection_error"
+            android:visibility="gone"
+            android:background="@color/primary">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:id="@+id/connection"
+                android:layout_centerHorizontal="true"
+                android:layout_above="@+id/network_text"
+                android:src="@drawable/connection"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:id="@+id/network_text"
+                android:gravity="center"
+                android:textColor="@color/accent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/nunito"
+                android:text="@string/connection"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

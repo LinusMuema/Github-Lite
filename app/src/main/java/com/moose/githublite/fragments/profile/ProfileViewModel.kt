@@ -17,6 +17,10 @@ class ProfileViewModel : ViewModel() {
         MutableLiveData<GithubUser>()
     }
 
+    val connection:MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
+    }
+
     val events: MutableLiveData<List<GithubEvents>> by lazy {
         MutableLiveData<List<GithubEvents>>()
     }
@@ -25,6 +29,7 @@ class ProfileViewModel : ViewModel() {
         val requestCall = infoService.getUser("Bearer $token")
         requestCall.enqueue(object : retrofit2.Callback<GithubUser> {
             override fun onResponse(call: Call<GithubUser>, response: Response<GithubUser>) {
+                connection.value = "Connection ok"
                 if (response.isSuccessful)
                     user.value = response.body()
                 else
@@ -32,7 +37,8 @@ class ProfileViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<GithubUser>, t: Throwable) {
-                Log.d("retrofit_", t.toString())
+                if (t.message!!.contains("Unable to resolve host"))
+                    connection.value = "No connection"
             }
         })
     }

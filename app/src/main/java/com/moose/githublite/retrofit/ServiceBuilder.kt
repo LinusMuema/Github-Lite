@@ -14,6 +14,7 @@ object ServiceBuilder {
 
     private val client = OkHttpClient.Builder()
         .addInterceptor(interceptor)
+        .addNetworkInterceptor(interceptor)
 
     private val builder = Retrofit.Builder()
         .baseUrl(base_url)

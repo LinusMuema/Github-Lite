@@ -37,7 +37,8 @@ class AddRepoViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<GithubRepos>, t: Throwable) {
-                Log.d("retrofit_", t.toString())
+                if (t.message!!.contains("Unable to resolve host"))
+                    created.value = "No connection"
             }
         })
     }

@@ -8,21 +8,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.moose.githublite.R
 import com.moose.githublite.adapters.RepoListAdapter
 import com.moose.githublite.model.GithubRepos
 import kotlinx.android.synthetic.main.fragment_repos.*
 
-class ReposFragment : Fragment() {
+
+class ReposFragment : Fragment(){
 
     private lateinit var reposViewModel: ReposViewModel
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var shared:SharedPreferences
     private var repos = ArrayList<GithubRepos>()
     private var token:String = ""
@@ -37,6 +41,14 @@ class ReposFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_repos, container, false)
+        swipeRefreshLayout = view.findViewById(R.id.content)
+        val connectionObserver = Observer<String> {
+            if (it == "No connection"){
+                swipeRefreshLayout.isRefreshing = false
+                view.findViewById<RelativeLayout>(R.id.connection_error).visibility = View.VISIBLE
+                progress_bar.visibility = View.GONE
+            }
+        }
         val reposObserver = Observer<List<GithubRepos>>{
             for (item in it){
                 if (!item.fork){
@@ -44,8 +56,16 @@ class ReposFragment : Fragment() {
                     Log.d("item_", repos.toString())
                 }
             }
+            view.findViewById<RelativeLayout>(R.id.connection_error).visibility = View.GONE
+            swipeRefreshLayout.isRefreshing = false
             setRecyclerView(view)
         }
+        swipeRefreshLayout.setOnRefreshListener{
+            reposViewModel.connection.observe(this, connectionObserver)
+            reposViewModel.repos.observe(this, reposObserver)
+            reposViewModel.getRepos(token)
+        }
+        reposViewModel.connection.observe(this, connectionObserver)
         reposViewModel.repos.observe(this, reposObserver)
         reposViewModel.getRepos(token)
         return view
@@ -62,4 +82,5 @@ class ReposFragment : Fragment() {
             adapter = viewAdapter
         }
     }
+
 }
