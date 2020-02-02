@@ -73,6 +73,7 @@ class ProfileFragment : Fragment() {
         val userObserver =  Observer<GithubUser>{
             user = it
             swipeRefreshLayout.isRefreshing = false
+            swipeRefreshLayout.isEnabled = false
             view.findViewById<RelativeLayout>(R.id.connection_error).visibility = View.GONE
             setUI().run { profileViewModel.getEvents(user.received_events_url) }
         }

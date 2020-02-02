@@ -1,12 +1,11 @@
 package com.moose.githublite.fragments.repos
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
@@ -18,6 +17,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.moose.githublite.R
 import com.moose.githublite.adapters.RepoListAdapter
 import com.moose.githublite.model.GithubRepos
+import com.moose.githublite.ui.MainActivity
+import com.moose.githublite.ui.Splash
 import kotlinx.android.synthetic.main.fragment_repos.*
 
 
@@ -33,6 +34,7 @@ class ReposFragment : Fragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         shared = activity?.getSharedPreferences("com.moose.githublite.shared", Context.MODE_PRIVATE)!!
         token = shared.getString("token","token")!!
         Log.d("token_", token)
@@ -69,6 +71,30 @@ class ReposFragment : Fragment(){
         reposViewModel.repos.observe(this, reposObserver)
         reposViewModel.getRepos(token)
         return view
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.logout_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.action_logout -> {logout()
+                true}
+            else -> super.onOptionsItemSelected(item)
+        }
+
+    }
+
+    private fun logout(){
+        shared.edit()
+            .putBoolean("loggedIn", false)
+            .apply().run{
+                val intent = Intent(requireContext(), Splash::class.java)
+                startActivity(intent)
+                activity!!.finish()
+            }
     }
 
     private fun setRecyclerView(view: View) {
