@@ -31,23 +31,30 @@ class EventListViewHolder(view: View) :RecyclerView.ViewHolder(view) {
     private val userImg:ImageView = view.findViewById(R.id.user_img)
     private val eventMsg:TextView = view.findViewById(R.id.event_msg)
 
-    @SuppressLint("SetTextI18n")
     fun bind(event: GithubEvents) {
-        Glide.with(this.itemView)
-            .load(event.actor.avatar_url)
-            .into(userImg)
-
         if (event.type == "ForkEvent"){
             eventMsg.text = "${event.actor.login} forked ${event.repo.name.split("/")[1]} from ${event.repo.name.split("/")[0]} on ${event.created_at.split("T")[0]}"
+            Glide.with(this.itemView)
+                .load(event.actor.avatar_url)
+                .into(userImg)
         }
         else if(event.type == "CreateEvent"){
             eventMsg.text = "${event.actor.login} created ${event.repo.name.split("/")[1]} on ${event.created_at.split("T")[0]}"
+            Glide.with(this.itemView)
+                .load(event.actor.avatar_url)
+                .into(userImg)
         }
         else if (event.type == "WatchEvent"){
             eventMsg.text = "${event.actor.login} starred ${event.repo.name} on ${event.created_at.split("T")[0]}"
+            Glide.with(this.itemView)
+                .load(event.actor.avatar_url)
+                .into(userImg)
         }
         else if (event.type == "PublicEvent"){
             eventMsg.text = "${event.actor.login} made ${event.repo.name} public ${event.created_at.split("T")[0]}"
+            Glide.with(this.itemView)
+                .load(event.actor.avatar_url)
+                .into(userImg)
         }
     }
 }
