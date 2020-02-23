@@ -10,8 +10,13 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.moose.githublite.R
 import kotlinx.android.synthetic.main.fragment_add_repo.*
+import kotlinx.android.synthetic.main.fragment_add_repo.adView
+import kotlinx.android.synthetic.main.fragment_add_repo.progress_bar
+import kotlinx.android.synthetic.main.fragment_repos.*
 import net.cachapa.expandablelayout.ExpandableLayout
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -34,6 +39,7 @@ class AddRepoFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        MobileAds.initialize(this.requireContext(), getString(R.string.ad_app_id))
         addRepoViewModel = ViewModelProviders.of(this).get(AddRepoViewModel::class.java)
         shared = activity?.getSharedPreferences("com.moose.githublite.shared", Context.MODE_PRIVATE)!!
         token = shared.getString("token","token")!!
@@ -45,6 +51,8 @@ class AddRepoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
         spinner.setItems("No", "Yes")
         spinner.setOnItemSelectedListener { _, _, _, item ->
             repoPrivate = item.toString()

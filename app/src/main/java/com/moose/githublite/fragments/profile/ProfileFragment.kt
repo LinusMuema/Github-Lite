@@ -12,12 +12,18 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
 import com.moose.githublite.R
 import com.moose.githublite.adapters.EventListAdapter
 import com.moose.githublite.model.Event
 import com.moose.githublite.model.GithubUser
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile.adView
+import kotlinx.android.synthetic.main.fragment_profile.connection_error
+import kotlinx.android.synthetic.main.fragment_profile.content
 import kotlinx.android.synthetic.main.fragment_profile.progress_bar
+import kotlinx.android.synthetic.main.fragment_repos.*
 
 class ProfileFragment : Fragment() {
 
@@ -31,6 +37,7 @@ class ProfileFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        MobileAds.initialize(this.requireContext(), getString(R.string.ad_app_id))
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         appContext = activity!!.applicationContext
         shared = activity?.getSharedPreferences("com.moose.githublite.shared", Context.MODE_PRIVATE)!!
@@ -44,6 +51,9 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
+
         val connectionObserver = Observer<String> {
             if (it == "No connection"){
                 connection_error.visibility = View.VISIBLE

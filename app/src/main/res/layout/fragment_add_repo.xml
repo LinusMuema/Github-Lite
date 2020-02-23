@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/relative_repos">
 
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -238,6 +239,16 @@
 
         </RelativeLayout>
 
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="wrap_content"
+            android:background="@color/primary"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-1312043290101038/8200099972">
+        </com.google.android.gms.ads.AdView>
 
         <ProgressBar
             android:id="@+id/progress_bar"

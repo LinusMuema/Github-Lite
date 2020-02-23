@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+            ads:adUnitId="ca-app-pub-1312043290101038/8200099972">
         </com.google.android.gms.ads.AdView>
 
         <androidx.recyclerview.widget.RecyclerView
