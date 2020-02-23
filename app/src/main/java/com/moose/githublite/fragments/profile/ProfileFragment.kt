@@ -1,27 +1,21 @@
 package com.moose.githublite.fragments.profile
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.moose.githublite.R
 import com.moose.githublite.adapters.EventListAdapter
-import com.moose.githublite.model.GithubEvents
+import com.moose.githublite.model.Event
 import com.moose.githublite.model.GithubUser
-import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.progress_bar
 
@@ -32,7 +26,6 @@ class ProfileFragment : Fragment() {
     private lateinit var profileViewModel: ProfileViewModel
     private lateinit var shared:SharedPreferences
     private lateinit var user: GithubUser
-    private lateinit var events:List<GithubEvents>
     private lateinit var token:String
     private lateinit var appContext: Context
 
@@ -66,9 +59,8 @@ class ProfileFragment : Fragment() {
             connection_error.visibility = View.GONE
             setUI().run { profileViewModel.getEvents(user.received_events_url) }
         }
-        val eventsObserver = Observer<List<GithubEvents>> {
-            events = it
-            setRecycler().run { progress_bar.visibility = View.INVISIBLE }
+        val eventsObserver = Observer<ArrayList<Event>> {
+            setRecycler(it).run { progress_bar.visibility = View.INVISIBLE }
         }
 
         content.setOnRefreshListener {
@@ -91,7 +83,7 @@ class ProfileFragment : Fragment() {
             .into(img)
     }
 
-    private fun setRecycler() {
+    private fun setRecycler(events: ArrayList<Event>) {
         viewManager = LinearLayoutManager(this.requireContext())
         viewAdapter = EventListAdapter(events)
         activity_recycler.apply {

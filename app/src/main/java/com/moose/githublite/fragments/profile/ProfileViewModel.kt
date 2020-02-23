@@ -1,11 +1,10 @@
 package com.moose.githublite.fragments.profile
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.moose.githublite.model.Event
 import com.moose.githublite.model.GithubEvents
-import com.moose.githublite.model.GithubRepos
 import com.moose.githublite.model.GithubUser
 import com.moose.githublite.retrofit.GithubEndpoints
 import com.moose.githublite.retrofit.ServiceBuilder
@@ -21,9 +20,10 @@ class ProfileViewModel : ViewModel() {
         MutableLiveData<String>()
     }
 
-    val events: MutableLiveData<List<GithubEvents>> by lazy {
-        MutableLiveData<List<GithubEvents>>()
+    val events: MutableLiveData<ArrayList<Event>> by lazy {
+        MutableLiveData<ArrayList<Event>>()
     }
+
     fun getUser(token: String) {
         val infoService =  ServiceBuilder.buildService(GithubEndpoints::class.java)
         val requestCall = infoService.getUser("Bearer $token")
@@ -49,7 +49,7 @@ class ProfileViewModel : ViewModel() {
         requestCall.enqueue(object : retrofit2.Callback<List<GithubEvents>> {
             override fun onResponse(call: Call<List<GithubEvents>>, response: Response<List<GithubEvents>>) {
                 if (response.isSuccessful)
-                    events.value = response.body()
+                    prepareEvents(response.body()!!)
                 else
                     Log.d("events_", "unsuccessful ${response.message()}")
             }
@@ -58,5 +58,24 @@ class ProfileViewModel : ViewModel() {
                 Log.d("events_", t.toString())
             }
         })
+    }
+
+    private fun prepareEvents(response: List<GithubEvents>) {
+        val arrayList: ArrayList<Event> = ArrayList()
+
+        for (event in response){
+            val image = event.actor.avatar_url
+            var message = ""
+            when (event.type) {
+                "CreateEvent" -> message = "${event.actor.login} created ${event.repo.name.split("/")[1]} on ${event.created_at.split("T")[0]}"
+                "ForkEvent" -> message = "${event.actor.login} forked ${event.repo.name.split("/")[1]} on ${event.created_at.split("T")[0]}"
+                "WatchEvent" -> message = "${event.actor.login} starred ${event.repo.name.split("/")[1]} on ${event.created_at.split("T")[0]}"
+                "DeleteEvent" -> message = "${event.actor.login} deleted ${event.repo.name.split("/")[1]} on ${event.created_at.split("T")[0]}"
+                "PublicEvent" -> message = "${event.actor.login} made ${event.repo.name} public on ${event.created_at.split("T")[0]}"
+            }
+            if (message.isNotEmpty())
+                arrayList.add(Event(image, message))
+        }
+        events.value = arrayList
     }
 }
