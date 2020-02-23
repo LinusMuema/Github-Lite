@@ -45,3 +45,8 @@ data class Repo(
     val name: String
 )
 
+data class Event(
+    val image:String,
+    val message: String
+)
+

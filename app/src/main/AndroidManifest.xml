@@ -42,6 +42,10 @@
                 <data android:scheme="githublite"/>
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1312043290101038~1826263311"/>
     </application>
 
 </manifest>

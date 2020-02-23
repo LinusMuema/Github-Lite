@@ -71,6 +71,9 @@ dependencies {
     //AppAuth
     implementation 'net.openid:appauth:0.7.1'
 
+    //Google Ads
+    implementation 'com.google.android.gms:play-services-ads:18.3.0'
+
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.7.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.0'

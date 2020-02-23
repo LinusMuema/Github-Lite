@@ -24,24 +24,16 @@ import com.moose.githublite.model.GithubUser
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.progress_bar
-import kotlinx.android.synthetic.main.fragment_repos.*
 
 class ProfileFragment : Fragment() {
 
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var profileViewModel: ProfileViewModel
-    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var shared:SharedPreferences
     private lateinit var user: GithubUser
     private lateinit var events:List<GithubEvents>
     private lateinit var token:String
-    private lateinit var name:TextView
-    private lateinit var mail:TextView
-    private lateinit var company:TextView
-    private lateinit var followers:TextView
-    private lateinit var following:TextView
-    private lateinit var img:CircleImageView
     private lateinit var appContext: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,53 +42,44 @@ class ProfileFragment : Fragment() {
         appContext = activity!!.applicationContext
         shared = activity?.getSharedPreferences("com.moose.githublite.shared", Context.MODE_PRIVATE)!!
         token = shared.getString("token", "token")!!
+        profileViewModel.getUser(token)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_profile, container, false)
-        swipeRefreshLayout = view.findViewById(R.id.content)
-        name = view.findViewById(R.id.name)
-        mail = view.findViewById(R.id.mail)
-        img = view.findViewById(R.id.img)
-        company = view.findViewById(R.id.company)
-        followers = view.findViewById(R.id.followers)
-        following = view.findViewById(R.id.following)
+        return inflater.inflate(R.layout.fragment_profile, container, false)
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val connectionObserver = Observer<String> {
             if (it == "No connection"){
-                view.findViewById<RelativeLayout>(R.id.connection_error).visibility = View.VISIBLE
-                swipeRefreshLayout.isRefreshing = false
+                connection_error.visibility = View.VISIBLE
+                content.isRefreshing = false
                 progress_bar.visibility = View.GONE
             }
         }
 
         val userObserver =  Observer<GithubUser>{
             user = it
-            swipeRefreshLayout.isRefreshing = false
-            swipeRefreshLayout.isEnabled = false
-            view.findViewById<RelativeLayout>(R.id.connection_error).visibility = View.GONE
+            content.isRefreshing = false
+            content.isEnabled = false
+            connection_error.visibility = View.GONE
             setUI().run { profileViewModel.getEvents(user.received_events_url) }
         }
         val eventsObserver = Observer<List<GithubEvents>> {
             events = it
-            setRecycler().run { view.findViewById<ProgressBar>(R.id.progress_bar).visibility = View.INVISIBLE }
+            setRecycler().run { progress_bar.visibility = View.INVISIBLE }
         }
 
-        swipeRefreshLayout.setOnRefreshListener {
-            profileViewModel.connection.observe(this, connectionObserver)
-            profileViewModel.events.observe(this, eventsObserver)
-            profileViewModel.user.observe(this, userObserver)
+        content.setOnRefreshListener {
             profileViewModel.getUser(token)
         }
 
         profileViewModel.connection.observe(this, connectionObserver)
         profileViewModel.events.observe(this, eventsObserver)
         profileViewModel.user.observe(this, userObserver)
-        profileViewModel.getUser(token)
-        return view
     }
 
-    @SuppressLint("SetTextI18n")
     private fun setUI() {
         name.text = user.name
         mail.text = user.email

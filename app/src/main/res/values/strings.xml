@@ -34,5 +34,6 @@
     <string name="client_secret">46ae345bb463e4e2f288c88a1dc5c4c5bbbc181e</string>
     <string name="redirect_uri">githublite://moose.apps</string>
     <string name="connection">No internet connection detected :(</string>
+    <string name="ad_app_id">ca-app-pub-1312043290101038~1826263311</string>
     <string name="logout">Logout</string>
 </resources>
